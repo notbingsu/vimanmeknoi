@@ -1,3 +1,5 @@
+package src;
+
 public class Account {
     private String accountUsername;
     private String accountPassword;
