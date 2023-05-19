@@ -6,6 +6,7 @@ public class Main {
 
     public static void main(String[] args) {
         UI ui = new UI();
+        ui.printIntro();
         Parser parser = new Parser();
         Scanner sc = new Scanner(System.in);
         while (sc.hasNext()) {

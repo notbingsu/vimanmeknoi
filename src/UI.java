@@ -3,10 +3,9 @@ package src;
 public class UI {
 
     public UI() {
-        printIntro();
     }
 
-    private final void printIntro() {
+    public final void printIntro() {
         System.out.println("Welcome to Hoontrakul! \n What can I help you with today?"
                 + "\n Type 'help' to see the list of available features.");
         this.printLineBreak();

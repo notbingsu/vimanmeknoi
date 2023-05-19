@@ -9,10 +9,10 @@ import java.util.Scanner;
 
 public class Storage {
     private static final String FILE_PATH = "accountsdata.txt";
-    Account account = new Account();
-    Accounts accounts = new Accounts();
+    private static AccountManager accountManager;
 
     public Storage() {
+        accountManager = new AccountManager();
     }
 
     public void loadFile() {
@@ -27,8 +27,7 @@ public class Storage {
                     String[] dataArr = data.split(",");
                     username = dataArr[0];
                     password = dataArr[1];
-                    account = new Account(username, password);
-                    accounts.add(account);
+                    accountManager.createAccount(username, password);
                 }
             }
         } catch (IOException e) {
