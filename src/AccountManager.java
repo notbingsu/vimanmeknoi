@@ -4,8 +4,8 @@ import java.util.HashMap;
 
 public class AccountManager {
     // create hashmap of username to account
-    private HashMap<String, Account> accountsHashMap;
-    private Accounts accounts;
+    private static HashMap<String, Account> accountsHashMap;
+    private static Accounts accounts;
     private static Boolean isAdmin;
     private static final String ADMIN_PASSWORD = "admin";
 
@@ -17,18 +17,18 @@ public class AccountManager {
         }
     }
 
-    public void adminLogin(String password) {
+    public static void adminLogin(String password) {
         if (password.equals(ADMIN_PASSWORD)) {
             isAdmin = true;
         }
     }
 
-    public void addAccount(Account account) {
+    public static void addAccount(Account account) {
         accountsHashMap.put(account.getUsername(), account);
         accounts.add(account);
     }
 
-    public void createAccount(String username, String password) {
+    public static void createAccount(String username, String password) {
         if (accountsHashMap.containsKey(username)) {
             System.out.println("Username already exists. Choose another username or log in.");
         } else {
@@ -37,7 +37,7 @@ public class AccountManager {
         }
     }
 
-    public void deleteAccount(String username, String password) {
+    public static void deleteAccount(String username, String password) {
         if (accountsHashMap.containsKey(username)) {
             Account account = accountsHashMap.get(username);
             if (account.checkPassword(password) | isAdmin) {
@@ -51,7 +51,7 @@ public class AccountManager {
         }
     }
 
-    public void login(String username, String password) {
+    public static void login(String username, String password) {
         if (accountsHashMap.containsKey(username)) {
             Account account = accountsHashMap.get(username);
             account.login(username, password);
@@ -61,7 +61,7 @@ public class AccountManager {
         }
     }
 
-    public void logout(String username) {
+    public static void logout(String username) {
         if (accountsHashMap.containsKey(username)) {
             Account account = accountsHashMap.get(username);
             account.logout();

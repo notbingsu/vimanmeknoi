@@ -27,7 +27,7 @@ public class Storage {
                     String[] dataArr = data.split(",");
                     username = dataArr[0];
                     password = dataArr[1];
-                    accountManager.createAccount(username, password);
+                    AccountManager.createAccount(username, password);
                 }
             }
         } catch (IOException e) {

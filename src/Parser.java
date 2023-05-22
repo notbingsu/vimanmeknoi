@@ -1,19 +1,21 @@
 package src;
 
+import java.util.Scanner;
+
 public class Parser {
-    private UI ui;
-    private static AccountManager accountManager;
+    private static Scanner parserScanner;
+    AccountParser accountParser;
 
     enum ParserState {
         MAIN, ACCOUNT, INFORMATION, PRODUCT
     }
 
-    ParserState ParserState;
+    private static ParserState parserState;
 
-    public Parser() {
-        ui = new UI();
-        accountManager = new AccountManager();
-        ParserState = ParserState.MAIN;
+    public Parser(Scanner sc) {
+        accountParser = new AccountParser();
+        parserState = ParserState.MAIN;
+        parserScanner = sc;
     }
 
     private class InvalidCommandException extends Exception {
@@ -24,12 +26,12 @@ public class Parser {
 
     public void parse(String input) {
         try {
-            switch (ParserState) {
+            switch (parserState) {
                 case MAIN:
                     parseMainCommand(input);
                     break;
                 case ACCOUNT:
-                    parseAccountCommand(input);
+                    // accountParser.parseAccountCommand(parserScanner);
                     break;
                 case INFORMATION:
                     // parseInformationCommand(input);
@@ -46,13 +48,15 @@ public class Parser {
         }
     }
 
-    private void parseMainCommand(String input) {
+    private static void parseMainCommand(String input) {
         switch (input) {
             case "help":
-                ui.printListOfCommands();
+                UI.printListOfCommands();
                 break;
             case "acc":
-                parseAccountCommand(input);
+                parserState = ParserState.ACCOUNT;
+                System.out.println("Accessing account menu...");
+                AccountParser.parseAccountCommand(parserScanner);
                 break;
             case "inf":
                 break;
@@ -63,25 +67,7 @@ public class Parser {
         }
     }
 
-    private void parseAccountCommand(String input) {
-        switch (input) {
-            case "login":
-
-                break;
-            case "logout":
-                break;
-            case "create":
-                break;
-            case "delete":
-                break;
-            case "edit":
-                break;
-            case "acc":
-                ParserState = ParserState.MAIN;
-                break;
-            default:
-                System.out.println("Invalid command. Type 'acc' to return to main menu.");
-        }
+    public static void setParserStatetoMain() {
+        parserState = ParserState.MAIN;
     }
-
 }
