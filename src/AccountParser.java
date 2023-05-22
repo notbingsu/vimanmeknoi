@@ -4,41 +4,32 @@ import java.util.Scanner;
 
 public class AccountParser {
     public AccountParser() {
-        accountHandlers = AccountHandlers.ACC;
     }
-
-    enum AccountHandlers {
-        ACC,
-        LOGIN,
-        LOGOUT,
-        CREATE,
-        DELETE,
-        EDIT
-    }
-
-    private static AccountHandlers accountHandlers;
 
     public static void parseAccountCommand(Scanner accountScanner) {
-        String input = accountScanner.nextLine();
-        switch (input) {
-            case "login":
-                accountHandlers = AccountHandlers.LOGIN;
-                parseLogin(accountScanner);
-                break;
-            case "logout":
-                break;
-            case "create":
-                break;
-            case "delete":
-                break;
-            case "edit":
-                break;
-            case "acc":
-                Parser.setParserStatetoMain();
-                System.out.println("Returning to main menu...");
-                break;
-            default:
-                System.out.println("Invalid command. Type 'acc' to return to main menu.");
+        String input = "";
+        while (!input.equals("acc")) {
+            input = accountScanner.nextLine();
+            switch (input) {
+                case "login":
+                    parseLogin(accountScanner);
+                    break;
+                case "logout":
+                    break;
+                case "create":
+                    parserCreateAccount(accountScanner);
+                    break;
+                case "delete":
+                    break;
+                case "edit":
+                    break;
+                case "acc":
+                    Parser.setParserStatetoMain();
+                    System.out.println("Returning to main menu...");
+                    break;
+                default:
+                    System.out.println("Invalid command. Type 'acc' to return to main menu.");
+            }
         }
     }
 
@@ -48,7 +39,16 @@ public class AccountParser {
         username = accountScanner.nextLine();
         System.out.println("Enter password: ");
         password = accountScanner.nextLine();
-        AccountManager.login(username, password);
+        AccountManager.accountLogin(username, password);
+    }
+
+    private static void parserCreateAccount(Scanner accountScanner) {
+        String username, password;
+        System.out.println("Enter username: ");
+        username = accountScanner.nextLine();
+        System.out.println("Enter password: ");
+        password = accountScanner.nextLine();
+        AccountManager.createAccount(username, password);
     }
 
 }

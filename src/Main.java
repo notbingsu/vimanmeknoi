@@ -14,6 +14,7 @@ public class Main {
             String input = sc.nextLine();
             input = input.toLowerCase();
             if (input.equals("bye")) {
+                storage.saveFile(AccountManager.getAccounts());
                 UI.printBye();
                 break;
             } else {

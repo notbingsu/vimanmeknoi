@@ -36,28 +36,16 @@ public class Account {
     }
 
     public String getPassword() {
-        try {
-            if (loggedIn | isAdmin) {
-                return this.accountPassword;
-            } else {
-                throw new IllegalAccessException();
-            }
-        } catch (IllegalAccessException e) {
-            System.out.println(e.getMessage());
-            return null;
-        }
+        return this.accountPassword;
+        // might have privacy issues
     }
 
     public boolean checkPassword(String password) {
         return this.accountPassword.equals(password);
     }
 
-    public void login(String username, String password) {
-        if (checkPassword(password)) {
-            loggedIn = true;
-        } else {
-            System.out.println("Incorrect password. Please try again.");
-        }
+    public Boolean login(String password) {
+        return loggedIn = checkPassword(password);
     }
 
     public void logout() {

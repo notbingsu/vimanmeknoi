@@ -23,6 +23,14 @@ public class AccountManager {
         }
     }
 
+    public static void adminLogout() {
+        isAdmin = false;
+    }
+
+    public static Accounts getAccounts() {
+        return accounts;
+    }
+
     public static void addAccount(Account account) {
         accountsHashMap.put(account.getUsername(), account);
         accounts.add(account);
@@ -51,11 +59,14 @@ public class AccountManager {
         }
     }
 
-    public static void login(String username, String password) {
+    public static void accountLogin(String username, String password) {
         if (accountsHashMap.containsKey(username)) {
             Account account = accountsHashMap.get(username);
-            account.login(username, password);
-            System.out.println("You are logged in as " + username);
+            if (account.login(password)) {
+                System.out.println("You are logged in as " + username);
+            } else {
+                System.out.println("Incorrect password. Returning you to account menu.");
+            }
         } else {
             System.out.println("Username does not exist. Please create an account.");
         }
