@@ -49,6 +49,7 @@ public class AccountParser {
         System.out.println("Enter password: ");
         password = accountScanner.nextLine();
         AccountManager.createAccount(username, password);
+        System.out.println("Account created successfully.");
     }
 
 }

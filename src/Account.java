@@ -7,11 +7,11 @@ public class Account {
     private static Boolean isAdmin;
     private static final String ILLEGAL_ACCESS_MESSAGE = "You do not have access. Please log in.";
 
-    private class IllegalAccessException extends Exception {
-        public IllegalAccessException() {
-            super(ILLEGAL_ACCESS_MESSAGE);
-        }
-    }
+    // private class IllegalAccessException extends Exception {
+    // public IllegalAccessException() {
+    // super(ILLEGAL_ACCESS_MESSAGE);
+    // }
+    // }
 
     public Account() {
         loggedIn = false;
